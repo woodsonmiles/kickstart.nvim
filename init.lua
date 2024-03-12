@@ -225,6 +225,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'towolf/vim-helm', -- helm syntax highlighting
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -236,7 +237,7 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
@@ -271,7 +272,7 @@ require('lazy').setup({
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -619,7 +620,7 @@ require('lazy').setup({
         --    ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
         --  },},
         --
-        bashls = { cmd = { "bash-language-server", "start" }, filetypes = { 'sh' } },
+        bashls = { cmd = { 'bash-language-server', 'start' }, filetypes = { 'sh' } },
         -- clangd = {},
         -- gopls = {},
         -- rust_analyzer = {},
@@ -657,6 +658,7 @@ require('lazy').setup({
 
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
+      -- More packages at https://github.com/mason-org/mason-registry
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
@@ -978,6 +980,9 @@ vim.api.nvim_create_user_command('W', 'w', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
 
 -- Set Swap Dir
-vim.cmd([[
+vim.cmd [[
 set dir=~/tmp
-]])
+]]
+
+-- No mouse
+vim.opt.mouse = ''
