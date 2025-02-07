@@ -637,15 +637,11 @@ require('lazy').setup({
         --  },},
         --
         bashls = { cmd = { 'bash-language-server', 'start' }, filetypes = { 'sh' } },
+        elixirls = { cmd = { 'elixir-ls' } },
+        rust_analyzer = {},
         -- clangd = {},
         -- gopls = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
+        -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         ts_ls = {},
         marksman = {},
 
@@ -679,6 +675,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'elixir-ls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -995,6 +992,9 @@ vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
 vim.api.nvim_create_user_command('W', 'w', {})
 vim.api.nvim_create_user_command('Q', 'q', {})
+--newlines in normal mode
+vim.keymap.set('n', '<S-CR>', 'm`O<Esc>``', { desc = 'Add newline above' })
+vim.keymap.set('n', '<CR>', 'm`o<Esc>``', { desc = 'Add newline below' })
 
 -- Set Swap Dir
 vim.cmd [[
