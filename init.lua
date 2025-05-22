@@ -236,6 +236,22 @@ require('lazy').setup({
   --  This is equivalent to:
   --    require('Comment').setup({})
 
+  {
+    'lervag/vimtex',
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    config = function()
+      --global vimtex settings
+      vim.g.vimtex_imaps_enabled = 0 --i.e., disable them
+      --vimtex_view_settings
+      vim.g.vimtex_view_method = 'zathura' -- change this, depending on what you want to use..sumatraPDF, or skim, or zathura, or...
+      vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+      --quickfix settings
+      vim.g.vimtex_quickfix_open_on_warning = 0 --  don't open quickfix if there are only warnings
+      vim.g.vimtex_quickfix_ignore_filters =
+        { 'Underfull', 'Overfull', 'LaTeX Warning: .\\+ float specifier changed to', 'Package hyperref Warning: Token not allowed in a PDF string' }
+    end,
+  },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   {
@@ -920,6 +936,7 @@ require('lazy').setup({
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
       auto_install = true,
+      ignore_install = { 'latex' },
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
@@ -1003,3 +1020,7 @@ set dir=~/tmp
 
 -- No mouse
 vim.opt.mouse = ''
+
+-- Required for vimtex
+vim.cmd 'filetype plugin on'
+vim.cmd 'filetype indent on'
