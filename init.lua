@@ -642,6 +642,13 @@ require('lazy').setup({
         pyright = {},
         jdtls = {},
         helm_ls = {},
+        gopls = {},
+        -- golangci_lint_ls = {
+        --   cmd = { 'golangci-lint-langserver' },
+        --   init_options = {
+        --     command = { 'golangci-lint', 'run', '--output.json.path', 'stdout', '--show-stats=false', '--issues-exit-code=1' },
+        --   },
+        -- },
         -- yamlls = { # conflicts with helm
         -- schemas = {
         --    kubernetes = "*.yaml",
@@ -650,6 +657,7 @@ require('lazy').setup({
         --    ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
         --    ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
         --    ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+        --    ["https://raw.githubusercontent.com/zarf-dev/zarf/main/zarf.schema.json"] = "zarf.yaml",
         --  },},
         --
         bashls = { cmd = { 'bash-language-server', 'start' }, filetypes = { 'sh' } },
@@ -660,6 +668,7 @@ require('lazy').setup({
         -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         ts_ls = {},
         marksman = {},
+        ltex = {},
 
         lua_ls = {
           -- cmd = {...},
