@@ -1073,6 +1073,7 @@ require('lazy').setup({
 --[[===================================
   =========Custom Settings=============
   ===================================]]
+
 -- Caps version of Save and Quit commands
 vim.api.nvim_create_user_command('WQ', 'wq', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
